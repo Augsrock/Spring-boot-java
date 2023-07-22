@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Product Application</title>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+<script>
+$(document).ready(function () {
+    $('#example').DataTable();
+});
+</script>
+</head>
+<body>
+
+<h1>Products </h1>
+<button type="button" th:onclick="|window.location.href='/create'|" class="btn btn-info">Create New Product</button>
+<table id="example" class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Code</th>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Brand</th>
+      <th scope="col">Type</th>
+      <th scope="col">Description</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<tr th:each="product : ${products}">
+  		<td th:text="${product.id}"/>
+  		<td th:text="${product.code}"/>
+  		<td th:text="${product.name}"/>
+  		<td th:text="${product.category}"/>
+  		<td th:text="${product.brand}"/>
+  		<td th:text="${product.type}"/>
+  		<td th:text="${product.description}"/>
+  		<td>
+  			<a th:href="@{/edit(code=${product.code})}">Edit</a>
+  		</td>
+  	</tr>
+  </tbody>
+
+</body>
+</html>
